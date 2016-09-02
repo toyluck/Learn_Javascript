@@ -1,7 +1,8 @@
 # Learn_Javascript
 学习javascript 中及框架和 其他一些遇到的问题的学习记录
 
-## 添加了 thegoodparts of javascript 
+## 对象
+> 对象是属性的容器，属性名为任意字符串，属性值是除**undefined**值之外的任何值
   1. javascript中数字没有浮点数之分，1===1.0，不会有溢出出现 ； isNaN(number) 用来检查是否是数字 
   2. 没有 character 而是以单字符的 形式出现，String 只有16位长度 是因为当时以Unicode-16为标准
   3.  检索时 检索时使用|| 来添加  默认值 'obj.item||('unknow')' ,  使用&& 来   规避undefined  的 的错误 (obj.item&&obj.item.item2)
@@ -25,6 +26,33 @@
                     }
                 }
         ```
+ 8. 对象字面量
+一个对象字面量就是包围在一对花括号中的灵活多个‘名/值’对；
+``` javascript
+ var stooge={
+   "first-name":"Jeremy",
+   "last-name":"Lin"
+ }
+```
+
+ 9.  原型
+> 通过对象字面量创建的对象都链接到 **Object.prototype**这个Javascript中标准的对象
+ 
+  beget()方法创建一个使用原对象作为其原型的新对象
+  ```javascript
+    if(typeof Object.beget!=='function'){
+       Object.beget=functio(o){
+        var F=function(){};
+        F.prototype=o;
+        return new F();
+       }
+    }
+  ```
+  原型连接只有在检索值的时候才被用到。尝试去获取某个对象的某个属性值，如果该对象没有此属性名，那么javascript会依次沿着原型对象树中获取属性值
+  ，直到Object.prototype，如果此时仍然没有则返回**undefined**。这个过程称为**委托**。
+  ，原型关系是一种动态的关系，即改即得
+
+
 ## 函数
 >  对象字面量 -> Object.prototype
 >  函数对象   -> Function.prototype ->Object.prototype
