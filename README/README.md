@@ -49,8 +49,7 @@
     }
   ```
   原型连接只有在检索值的时候才被用到。尝试去获取某个对象的某个属性值，如果该对象没有此属性名，那么javascript会依次沿着原型对象树中获取属性值
-  ，直到Object.prototype，如果此时仍然没有则返回**undefined**。这个过程称为**委托**。
-  ，原型关系是一种动态的关系，即改即得
+  ，直到Object.prototype，如果此时仍然没有该属性则返回**undefined**。这个过程称为**委托**。
 
 
 ## 函数
@@ -143,7 +142,7 @@ throw{
       return this;
     }
 ```
-
+ 
 
 
 [关于 apply,call,bind 的妙用]: http://www.cnblogs.com/coco1s/p/4833199.html 
