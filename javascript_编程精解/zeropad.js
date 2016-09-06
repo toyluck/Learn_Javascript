@@ -42,3 +42,27 @@ function testArgu() {
 }
 
 testArgu("1",2,3);
+
+function forEach( array, func ) {
+    for (var i=0;i<array.length;i++){
+        func(array[i]);
+    }
+}
+
+function reduce(combine,base,array){
+    forEach(array,function(number){
+       base=combine(base,number);
+    });
+    return base;
+}
+
+
+function countZero( array ) {
+    function counter( total, element ) {
+        return total+(element===0?1:0);
+    }
+
+    //函数编程，函数编程，函数编程
+    return reduce(counter,0,array);
+}
+console.log(countZero([0,1,2,0,2,0]));
