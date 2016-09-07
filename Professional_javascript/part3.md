@@ -37,3 +37,14 @@ Logo          : True
 
 * 更倾向与使用parseInt（） 方法，非数值返回NaN
   ：指定基数 parseInt(str,2||10||16)
+
+## 参数
+arguments 与 命名参数一起使用,arguments的值永远与对应命名参数的值保持同步
+``` javascript
+function hello(name1,name2) {
+  return "world";
+}
+```
+## 没有重载
+
+如果在ECMAScript 中定义了两个名字相同的函数,后定义的函数起作用
