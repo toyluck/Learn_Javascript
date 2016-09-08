@@ -35,8 +35,29 @@ book.__defineSetter__("year",function(newValue){
 });
 var des=Object.getOwnPropertyDescriptor(book,"_year");
 var names=Object.getOwnPropertyNames(book);
-console.log(names);
-console.log(des);
-book.year=2005;
-console.log(book.year);
-console.log(book.edition);
+// console.log(names);
+// console.log(des);
+// book.year=2005;
+// console.log(book.year);
+// console.log(book.edition);
+
+book.prototype={
+    constructor:book,
+    value:120,
+    count:10,
+    clzz:"Technology",
+    sayName:function(){
+        console.log(this.clzz);
+    }
+};
+Object.defineProperty(book.prototype,"constructor",{
+    enumerable:false,
+    value:book
+});
+var keys=Object.keys(book.prototype);
+console.log(keys);
+
+console.log(book.constructor === book);
+console.log(book.prototype.clzz);
+ 
+book.prototype.sayName();
