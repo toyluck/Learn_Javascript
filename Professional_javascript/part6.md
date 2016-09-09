@@ -116,6 +116,136 @@ Object.defineProperty(obj.prototype,"constructor",{
  在原型中查找值的过程试一次搜索,因此对原型对象的所做的任何修改都能够立即在 实例上反映出来.
 
 &diams; **实例中的指针仅指向原型,而不指向构造函数**
+假如实例在重写整个原型前被创建,此时原型中的所有对象不能被使用,否则会出错.
+
+``` javascript
+var amy=new Person();
+Person.prototype={
+  name:"amy"
+};
+
+amy.name//undefined 
+
+```
+### 原型对象的问题
+> 原型模式 省略了为构造函数传递初始化参数这一环节,所有实例在默认情况下都将取得相同的属性值
+
+当原型对象中包含引用类型的属性时,所有的实例都指向同一个引用类型,不能保证各个实例都有自己的全部属性. 
 
 
+* 混成模式
+实例有自己的一份实例属性的副本,共享对方法的引用.
+``` javascript
+function Person(name,age,job) {
+  this.name=name;
+  this.age=age;
+  this.job=job;
+  this.friends=[];
+}
+
+Person.prototype={
+  constructor:Person,
+  sayName:function(){
+    console.log(this.name);
+  }
+}
+
+```
+* 动态原型模式
+ 避免原型方法的重定义.
+** 不能使用对象字面量重写原型**
+``` javascript
+function Person(name,age,job) {
+   this.name=name;
+  this.age=age;
+  this.job=job;
+  if(typeof this.sayName != 'function'){
+    Person.prototype.sayName=function(){
+      //...
+    }
+  }
+}
+```
+* 稳妥构造函数模式
+> 没有公共属性,其中的方法也不引用this的对象
+&bbox; 除了指定的方法,没有其他办法访问构造函数中的值.
+``` javascript
+function Person(name,age,job) {
+   var o=new Object();
+   // 定义私有变量和函数
+   o.sayName=function(){
+     console.log(name);
+   };
+   return o;
+}
+```
+
+# 继承
+> EMCAScript 只支持实现继承,主要是依靠原型链来实现的
+
+## 原型链
+> 构造函数都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针(constructor),实例都包含一个指向原型对象(prototype)的内部指针.
+
+假如让原型对象等于另一个类型的实例,层层递进,就构成了原型链.
+
+&ballotbox;实现的本质是重写原型对象
+
+&ballotbox;默认的原型都是Object的实例
+
+&ballotbox;确定原型和实例的关系-- instanceof  或者 isPrototypeOf()方法
+
+&ballotbox;给原型添加方法的代码一定要放在替换原型的语句之后
+
+&ballotbox;原型链继承时,不能使用对象字面量创建原型方法,这样相当于重写原型链
+
+&ballotbox;使用时要考虑引用类型在原型中 同步更新到每一个实例的影响
+
+&ballotbox; 创建子类型的实例时,不能向超类型的构造函数中传递参数
+
+### 借用构造函数
+在子类型的构造函数中,显式调用 超类型 apply()和call()方法,这样会在新的子类型对象上执行超类型函数中定义的所有对象初始化代码.
+
+### 组合继承
+> 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承.
+``` javascript
+function SuperObj(name) {
+  this.name=name;
+};
+function ChildObj(name,age){
+  SuperObj.call(name);  //第二次调用
+  this.age=age;
+};
+ChildObj.prototype=new SuperObj();  // 调用一次 SuperObj
+ChildObj.prototype.constructor=ChildObj;
+
+```
+
+### 原型式继承
+只想让一个对象与另一个对象保持类似的情况下使用,要注意的是 引用类型的属性同样是共享的.
+``` javascript
+function object(obj){
+  function f={};
+  f.prototype=obj;
+  return new f();
+}
+```
+
+### 寄生组合式继承
+> 不必为了指定子类型的原型而调用超类型的构造函数.
+``` javascript
+function inheritPrototype(subType,superType){
+  var prototype=Object.create(superType.prototype);//创建对象
+  prototype.constructor=subType;//增强对象
+  subType.prototype=prototype;//指定对象
+}
+function SuperObj(name) {
+  this.name=name;
+};
+function ChildObj(name,age){
+  SuperObj.call(name);  //第一次调用
+  this.age=age;
+};
+inheritPrototype(ChildObj,SuperObj);
+
+```
 

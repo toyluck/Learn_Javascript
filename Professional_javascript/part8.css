@@ -1,0 +1,17 @@
+.left_frame{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    clear: both;
+    float: left;
+}
+.top_frame{
+
+}
+
+.right_frame{
+    position: absolute;
+    float: right;
+    width: 50%;
+    height: 100%;
+}
