@@ -53,5 +53,56 @@ Email         : toylucklebo@outlook.com
 : `div.classList.remove("clazz")`;
 
 ### 焦点管理
+* document.activeElement 属性. 获取当前DOM中获得焦点的元素
+* item.focus()  // 获得焦点
+* document.hasFocus() // 确定是否获得焦点
+
+### HTMLDocument 的变化
+> 这些功能被大部分浏览器支持
+
+#### readyState 属性
+* loading   // 正在加载文档
+* complete  // 已经加载完文档
+``` javascript
+if(document.readyState=="complete"){
+  //执行操作
+  
+}
+```
+#### 兼容模式
+> 从IE6开始区分页面渲染的模式 是标准还是混杂的.
+
+document.compatMode
+
+#### head属性
+HTML5 中新增 head属性.若不可用 使用 document.getElementsByTagName("head")[0];
+
+## 字符集属性
+
+document.charset // 表示文档中实际使用的字符集,也可以用来指定新字符集
+
+## 自定义数据属性
+> 当需要给元素添加一些不可见的数据以便进行其他处理时使用
+> HTML5规定可以为元素添加非标准的属性,前缀为 data- 即可
+```html
+<div id="id1" data-appid="1234" data-myname="Nicholas"></div>
+```
+
+要访问时 通过元素的dataset 属性.
+: dataset属性的值是DOMStringMap的一个实例,键值对.
+``` javascript
+var id1=document.querySeletor("#id1");
+let appid=id1.dataset.appid;//获取
+id1.dataset.appid="4321";//设置值
+```
+
+&bbox; 要注意浏览器是否支持本属性
+
+## 插入标记
+### interHtml属性
+
+### outerHTML属性
+在读模式下,outerHTML会根据指定的HTML字符串创建新的DOM子树,然后用这个DOM子树**完全替换调用元素**
+
 
 ~ End MainPanel
