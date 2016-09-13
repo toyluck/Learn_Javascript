@@ -27,5 +27,37 @@ var value=window.oldValue;// 这里不会抛出错误,因为这是一次属性�
 ```
 
 ## 窗口关系及框架(frame)
-> 如果页面中包含框架,则每个框架都有自己的window对象,并保存在frames集合中.每个window对象都有一个name属性,其中包含框架的名称.
+> 如果页面中包含框架,则每个框架都有自己的window对象,并保存在frames集合中.每个window对象都有一个name属性,其中包含框架的名称.同时浏览器会存在多个Global对象,在每个框架中定义的**全局变量**会自动成为框架中window对象的属性.每个window对象都包含原生类型的构造函数,这些构造函数都一一对应,但并不相等.
+
+## 导航和打开窗口
+window.open(); 方法返回一个指向新窗口的引用,通过其可以调整大小或者移动位置.
+新创建的窗口中 有一个 opener 属性指向打开它的原始窗口,但原始窗口没有指向弹出窗口的指针.
+如果两个window之间要互相通信,新的标签页就不能运行在独立的进程中.要切断之间的联系 通过设置  `opener =null` 
+### 弹出窗口屏蔽程序
+
+* 浏览器内置的屏蔽程序阻止的弹出窗口
+:检测window.open()返回值是否为null 来进行检测是否被阻止
+* 浏览器扩展或其他程序阻止
+: window.open()通常都会抛出一个错误.这是可以通过 try-catch块来进行处理
+``` javascript
+var blocked=false;
+
+try{
+  var w=window.open(//...);
+   if(w==null)blocked=true; 
+}catch(ex){
+  blocked=true;
+}
+```
+
+### 间歇调用和超时调用
+
+* 超时调用 -> window.setTimeout();
+
+* 简写调用 -> window.setInterval();
+
+## 位置操作
+>location 记录当前页面的位置,并可以对浏览功能进行细分使用.
+ 
+
 

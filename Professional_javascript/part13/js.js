@@ -2,6 +2,7 @@
  * Created by anybody on 2016/9/12.
  */
 
+<<<<<<< HEAD
 var btn = document.querySelector(".myclass");
 btn.addEventListener("click", function () {
     alert("first actived");
@@ -85,3 +86,13 @@ EventUtls.addHandler(document, "click", function ( event ) {
 
 var mock_event=document.createEvent("MouseEvents");
 mock_event.initMouseEvent()
+=======
+document.body.addEventListener("click",function (event) {
+    console.log(event.target+"___" +event.currentTarget+"____" +this);
+},false);
+
+document.querySelector("button").addEventListener("click",function (event) {
+    console.log("button catch!!!");
+    event.stopPropagation();
+},false);
+>>>>>>> 6e27439d8b1ac5b1b9bddec99c6371436ed18d26
