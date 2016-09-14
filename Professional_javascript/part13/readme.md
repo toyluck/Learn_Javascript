@@ -32,6 +32,7 @@ eg:
 ```
 `this` 等于事件的目标元素
  
+
 &bbox; 存在时差,当时的事件处理程序尚不具备执行条件,会导致错误
 
 &bbox; 在不同浏览器会导致不同结果
@@ -382,6 +383,8 @@ var isSupported=("onhashchange" in window)&&(document.documentMode==undefined||d
 ### 模拟鼠标事件
 
  
+
+
 ### 跨浏览器的事件处理
 
 ``` javascript
@@ -438,6 +441,6 @@ var handler=function(event){
 &bbox; eventPhase　属性
 * 1 : 捕获阶段
 * 2 : 处于目标对象上
-* 3 : 冒泡阶段调用的事件处理程序 
+* 3 : 冒泡阶段调用的事件处理程序  
 
 ~ End MainPanel

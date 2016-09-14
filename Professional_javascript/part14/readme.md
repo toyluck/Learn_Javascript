@@ -1,8 +1,8 @@
-Title         : 表单脚本
+Title         : 表单
 
 Author        : Hyc
 Affiliation   : 
-Email         : toyluckelbo@outlook.com
+Email         : toylucklebo@outlook.com
 
 Bibliography  : example.bib
 
