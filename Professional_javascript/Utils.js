@@ -25,7 +25,8 @@ var EventUtls = {
         return event || window.event;
     },
     getTarget: function ( event ) {
-        return event.target || event.srcElement;
+        // console.log("event.target== " + event.target +" or " + event.srcElement);
+        return event.target? event.target:event.srcElement;
     },
     preventDefault: function ( event ) {
         if (event.preventDefault) {
