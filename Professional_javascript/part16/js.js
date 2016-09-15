@@ -11,4 +11,11 @@ EventUtls.addHandler(window,"message",function ( event ) {
     if (event.origin=="http://localhost:63342"){
         console.log("received : " +event.data);
     }
-})
+});
+var a=document.querySelector("#t_a");
+EventUtls.addHandler("click",function (event) {
+   history.pushState("clicked_a","justclick","click/a");
+});
+EventUtls.addHandler(window,"popstate",function (event) {
+   console.log("something is happen"+event.state);
+});
