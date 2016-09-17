@@ -1,0 +1,87 @@
+Title         : Javascript 与 XML
+
+Author        : Hyc
+Affiliation   : 
+Email         : toylucklebo@outlook.com
+
+[INCLUDE=book]
+[INCLUDE=webtoc]
+[INCLUDE=webanchors]
+
+[TITLE]
+
+~ Begin SidePanel
+[TOC]
+~ End SidePanel
+# 浏览器对XML DOM 的支持
+
+## DOM2 级核心
+
+`document.implementation.createDocument()` IE9+ 支持，创建一个空白的XML 文档
+
+## DOMParser 类型
+> 将XML 解析为DOM文档
+
+```javascript
+  // DOMParser 实例
+  var parser=new DOMParser();
+  // 拿到Document实例,                xml字符串             , 内容类型[固定]
+  var xmldom=parser.parseFromString("<root><child/></root>","text/xml");
+  
+``
+DOMParser 只能解析格式良好的XML,否则返回的Document 只包含一个 **`<parsererror>`**文档元素,内容是对解析错误的描述.
+
+IE9+ 会在这个地方抛出一个解析错误. 因此要 try-catch 语句块处理
+
+## XMLSerializer 类型
+> 将DOM文档序列化为 XML字符串
+
+## IE8及之前版本中的XML
+> IE是第一个原生支持XML的浏览器,通过ActiveX 对象实现的.
+
+```javascript
+  function createDocument(){
+       if(typeof arguments.callee.activeXString != "String"){
+       // 微软推荐的 使用
+         var versions=["MSXML2.DOMDocument.6.0","MSXML2.DOMDocument.3.0,"MSXML2.DOMDocument"]
+         ,i,len;
+         // 迭代每个可能的ActiveX 版本. 无效时,抛出错误
+         for(i=0,len=versions.length;i<len;i++){
+          try{
+          new ActiveXObject(versions[i]);
+          arguments.callee.activeXString=versions[i];
+          break;
+          }catch(ex){
+          }
+         }
+       }
+       return new ActiveXObject(arguments.callee.activeXtring);
+  }
+```
+
+`parseError`的数值编码不为0,即为出错.
+
+### 序列化 XML
+
+IE中 每个DOM节点都有一个XML 属性,其中保存着表示该节点的XML字符串. `xmldom.xml`
+
+### 加载XML文件
+> 可加载服务器的文件. 可同/异步加载,通过设置`async` 属性.
+
+**虽然可以通过XMLDOM 文档加载XML 文件,但是还是用 XMLHttp-Request 对象比较好**
+
+
+## 跨浏览器处理XML
+
+结合 `DOMParser` 和`ActiveXObject` 进行分别处理
+
+
+# 浏览器对 XPath 的支持
+
+> 用来在DOM文档中查找节点的一种手段.
+
+## DOM3级XPath
+功能确认 :  XPath 3.0
+
+
+~ End MainPanel
