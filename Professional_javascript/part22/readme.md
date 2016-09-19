@@ -165,6 +165,48 @@ _Array.concat(),不传递参数,会返回一个原来数组中的copy_
 **只要代码是周期性执行的,都应该使用节流**
 
 # 自定义事件
+```JavaScript
+   function EventTarget(){
+     this.handlers={};
+   }
+   
+   EvetTarget.prototype={
+     contructor:EventTarget,
+     addHandler:function(type,handler){
+       if(typeof this.handlers[type]=="undifined"){
+         this.handlers[type]=[];
+       }
+       this.handlers[type].push(handler);
+     },
+     fire:function(event){
+       if(!event.target){
+         event.target=this;
+       }
+       if(this.handlers[event.type] instanceof Array){
+         var handlers=this.handlers[event.type];
+         for(var i=0,len=handlers.length;i<len;i++){
+           //发送事件
+           handlers[i](event);
+         }
+       }
+     },
+     removeHandler:function(type,handler){
+       if(this.handlers[type] instanceof Array){
+          var handlers=this.handlers[event.type];
+           for(var i=0,len=handlers.length;i<len;i++){
+           //发送事件
+              if(handlers[i] ==handler){
+                break;
+                  }
+             }
+          handlers.splice(i,1);
+       }
+     }
+   }
+   
+```
+
+# 拖放
 
 
 ~ End MainPanel
