@@ -44,8 +44,6 @@ function start( response ) {
         '</form>' +
         '</body>' +
         '</html>';
-
-
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
     response.end();
@@ -90,6 +88,7 @@ function show( response, req ) {
             }
         })
 }
+
 exports.start = start;
 exports.upload = upload;
 exports.show = show;

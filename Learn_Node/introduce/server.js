@@ -5,6 +5,7 @@
 
 var http = require("http");
 var url = require("url");
+
 function start( route, handler ) {
     var onRequest = function ( request, response ) {
         var pathname = url.parse(request.url).pathname;
@@ -22,7 +23,8 @@ function start( route, handler ) {
         //     route(handler, pathname, response, postData);
         //
         // });
-            route(handler, pathname, response, request);
+
+        route(handler, pathname, response, request);
 
     };
     /**

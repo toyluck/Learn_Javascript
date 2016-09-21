@@ -1,0 +1,31 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+nav {
+    float: left;
+    font-family: "Microsoft YaHei UI";
+    font-size: 1.1em;
+    text-transform: uppercase;
+    margin-left: 6em;
+    margin-right: 3em;
+    width: 9em;
+    text-align: right;
+}
+
+nav a {
+    display: block;
+    padding: .7em 1em;
+    color: #000000;
+}
+
+nav a:hover {
+    background-color: #ff0000;
+    color: #f9f9f9;
+    -webkit-transition: color .2s linear;
+}

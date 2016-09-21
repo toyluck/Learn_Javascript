@@ -34,17 +34,43 @@ fs.rename("temp2temp", "temp2temp", function ( err ) {
 /**
  *  当文件名改变时 触发
  */
-fs.watch("weeee21",{encoding:'buffer'},function ( eventType, filename ) {
-    if(filename){
-        console.log(filename+"\n");
-        console.log(eventType);
-
-    }
-});
+// fs.watch("weeee21", {encoding: 'buffer'}, function ( eventType, filename ) {
+//     if (filename) {
+//         console.log(filename + "\n");
+//         console.log(eventType);
+//
+//     }
+// });
 
 /**
  * 回调获取该文件的状态
  */
-fs.stat("weeee21",function(err,stats){
-   console.log(stats.isFile()+"     ___");
+fs.stat("weeee21", function ( err, stats ) {
+    console.log(stats.isFile() + "     ___");
+});
+
+fs.open('data', 'r', function ( err, data ) {
+    console.log("is data open");
+    if (err) {
+        if (err.code === "ENOENT") {
+            console.error("File already exists");
+            return;
+        } else {
+            throw err;
+        }
+    } else
+        console.log(data + "====");
+});
+
+var str = fs.readFile('data', function ( err, data ) {
+
+    console.log(data.length);
+});
+
+fs.readdir(__dirname,  function ( err, list ) {
+    var li = list.filter(function ( node ) {
+
+        return node.endsWith(".js");
+    });
+    console.log(li);
 });
