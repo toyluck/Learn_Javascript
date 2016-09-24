@@ -4,23 +4,48 @@
 <head>
     <title>定位和居中问题</title>
     <style type="text/css">
+        body{
+            min-width: 400px;
+            min-height: 200px;
+        }
         #gray_back {
             width: 400px;
             height: 200px;
             background-color: #ccc;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -100px;
+            margin-left: -200px;
+            z-index: 10;
         }
-        
-        #container {
-           
+        .gra{
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            position: absolute;
+        }
+        .r_gra{
+            border-radius: 0 0 50px 0;
+
+        }
+        .l_gra{
+            border-radius: 50px 0 0 0;
+            right:0;
+            bottom:0;
         }
     </style>
 </head>
 
 <body>
-    <div id="container">
-        <div id="gray_back">
+<div id="container">
+    <div id="gray_back">
+        <div class="r_gra gra">
+
         </div>
+        <div class="l_gra gra"></div>
     </div>
+</div>
 
 </body>
 

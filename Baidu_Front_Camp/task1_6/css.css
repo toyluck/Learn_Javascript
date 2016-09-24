@@ -1,0 +1,33 @@
+.wwh {
+    display: table;
+}
+
+.wwh figure {
+    display: table-cell;
+    position: relative;
+}
+
+.wwh figcaption {
+    font-size: larger;
+    /*width: 30px;*/
+    width: auto;
+    display: inline-block;
+    /*border-bottom: 3px solid;*/
+}
+
+.green{
+    border-bottom: 3px solid green;
+    color: green;
+
+}
+
+.yellow {
+    border-bottom: 3px solid #f91;
+    color: #ff9a1c;
+}
+
+.red {
+    border-bottom: 3px red solid;
+    color: red;
+
+}

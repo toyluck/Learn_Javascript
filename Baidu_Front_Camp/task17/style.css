@@ -1,0 +1,18 @@
+.aqi-chart-wrap {
+    width: 90%;
+    display: flex;
+    height: 400px;
+    padding: 5%;
+    bottom: 0;
+}
+
+p {
+    bottom: -1px;
+    height: 150px;
+    overflow: hidden;
+
+}
+p:hover{
+    display: block;
+}
+
