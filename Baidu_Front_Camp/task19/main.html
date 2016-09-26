@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        span {
+            display: inline-block;
+            padding: 5px;
+            background-color: red;
+            color: #ffffff;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .in_line {
+            display: inline;
+        }
+
+        #div_show_numbers {
+            position: relative;
+            display: flex;
+            height: 80px;
+        }
+
+        .show_rec + div {
+            position: absolute;
+            background-color: red;
+            width: 20px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="in_line">
+
+    <label for="input_number">
+        <input type="text" id="input_number">
+    </label>
+
+    <button id="btn_left_in">左侧入</button>
+    <button id="btn_right_in">右侧入</button>
+    \t
+    <button id="btn_left_out">左侧出</button>
+    <button id="btn_right_out">右侧出</button>
+</div>
+
+<div id="div_show_numbers"><div class="show_rec"></div></div>
+</body>
+<script src="../Utils.js"></script>
+<script src="task.js"></script>
+</html>
